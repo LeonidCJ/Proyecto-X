@@ -28,6 +28,8 @@ async def usersjson():
 async def users():
     return users_list
 
+#path
+
 @app.get("/user/{id}")
 async def user(id: int):
     users = filter(lambda user: user.id == id, users_list)
@@ -36,8 +38,14 @@ async def user(id: int):
     except:
         return {"error": "No se ha encontrado el usuario"}
     
-@app.get("/userquery/")
+#query
+    
+    
+@app.get("/user/")
 async def user(id: int):
+    return search_user(id)
+    
+def search_user( ind: int):
     users = filter(lambda user: user.id == id, users_list)
     try:
         return list(users)[0]
